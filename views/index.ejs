@@ -12,11 +12,11 @@
     <style>
         div.header-sec {
             background: #00cba9;
-            height: 20rem;
+            height: 25rem;
         }
 
         div.container {
-            margin-top: -20rem;
+            margin-top: -29.5rem;
         }
 
         h1.heading {
@@ -32,8 +32,29 @@
             text-align: center;
             color: azure;
         }
+
         input.form-control.col {
             padding: 2rem 1.5rem;
+        }
+
+        input.form-control.col.sh-url {
+            margin-top: 2rem;
+            margin-left: 10rem;
+            margin-right: 20rem;
+            padding: 1rem 1rem;
+        }
+
+        button.copy-btn {
+            margin-right: 10rem;
+        }
+
+        button.shorten-btn {
+            padding: 0.5rem 3rem;
+            margin: auto 40%;
+            margin-top: 1rem;
+            color: whitesmoke;
+            font-family: 'MuseoModerno', cursive;
+            font-size: larger;
         }
     </style>
 </head>
@@ -57,29 +78,47 @@
             <label for="fullURL" class="sr-only">URL</label>
             <input required placeholder="Type URL here" type="url" 
             name="fullURL" id="fullURL" class="form-control col">
-            <button class="btn btn-success" type="submit">Squish!</button>
+            <button class="shorten-btn btn btn-primary" type="submit">Shorten</button>
         </form>
     </div>
     
-
+    
+        <!-- The text field -->
+        <input type="text" value="Hello World" id="shortURL" class="form-control col sh-url">
+        <!-- The button used to copy the text -->
+        <button class="copy-btn" onclick="myFunction()">Copy text</button>
+    
+    
+    
+    
 
     <!--- <table class="table table-striped table-responsive">
-            <thead>
+        <thead>
+            <tr>
+                <th>Full URL</th>
+                <th>Squished URL</th>
+                <th>Clicks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% shortURLs.forEach(shortURL => { %>
                 <tr>
-                    <th>Full URL</th>
-                    <th>Squished URL</th>
-                    <th>Clicks</th>
+                    <td><a href="<%= shortURL.full %>"><%= shortURL.full %></a></td>
+                    <td><a href="<%= shortURL.short %>"><%= shortURL.short %></a></td>
+                    <td><%= shortURL.clicks %></td>
                 </tr>
-            </thead>
-            <tbody>
-                <% shortURLs.forEach(shortURL => { %>
-                    <tr>
-                        <td><a href="<%= shortURL.full %>"><%= shortURL.full %></a></td>
-                        <td><a href="<%= shortURL.short %>"><%= shortURL.short %></a></td>
-                        <td><%= shortURL.clicks %></td>
-                    </tr>
-                <% }) %> 
-            </tbody>
-        </table> --->
+            <% }) %> 
+        </tbody> --->
+    </table> 
+
+    <script>
+        function myFunction() {
+            var copyText = document.getElementById("shortURL");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+            //alert("Copied the text: " + copyText.value);
+        }
+    </script>
 </body>
 </html>
