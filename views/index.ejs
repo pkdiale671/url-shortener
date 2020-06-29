@@ -89,42 +89,17 @@
         <div class="container">
             <div class="card">
                 <div class="card-header output">Copy and share your shortened URL below</div>
-                <div class="card-body output"><a href="#" id="shortenedURL">https://pk.ly/fjnklFFEo</a> </div>
+                <div class="card-body output"><a href="<%= shortURL.full %>" id="shortenedURL"><%= shortURL.full %></a></div>
             </div>
         </div>
     </div>
 
-    
-    
-    
-
-    <!--- <table class="table table-striped table-responsive">
-        <thead>
-            <tr>
-                <th>Full URL</th>
-                <th>Squished URL</th>
-                <th>Clicks</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% shortURLs.forEach(shortURL => { %>
-                <tr>
-                    <td><a href="<%= shortURL.full %>"><%= shortURL.full %></a></td>
-                    <td><a href="<%= shortURL.short %>"><%= shortURL.short %></a></td>
-                    <td><%= shortURL.clicks %></td>
-                </tr>
-            <% }) %> 
-        </tbody> --->
-    </table> 
-
-    <script>
-        function myFunction() {
-            var copyText = document.getElementById("shortURL");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999)
-            document.execCommand("copy");
-            //alert("Copied the text: " + copyText.value);
-        }
-    </script>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue mt-5">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright, By Pako Diale. All rights reserved.</div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
 </body>
 </html>
