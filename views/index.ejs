@@ -7,44 +7,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@600&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap" rel="stylesheet">
     <title>Free URL Shortener</title>
 
     <style>
-        div.header-sec {
+        div.header {
             background: #00cba9;
-            height: 25rem;
+            height: 23rem;
         }
 
-        div.container {
-            margin-top: -29.5rem;
-        }
-
-        h1.heading {
+        #heading {
             font-family: 'MuseoModerno', cursive;
             font-size: 5rem;
             text-align: center;
             padding-top: 5rem;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             color: azure;
         }
 
-        h4.par {
+        #sub-heading {
             text-align: center;
             color: azure;
         }
 
-        input.form-control.col {
-            padding: 2rem 1.5rem;
+        input#fullURL.form-control {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            padding-left: 1rem;
         }
 
-        input.form-control.col.sh-url {
+        div.in-out-form {
             margin-top: 2rem;
-            margin-left: 10rem;
-            margin-right: 20rem;
-            padding: 1rem 1rem;
         }
 
-        button.copy-btn {
+        div.output {
+            text-align: center;
+        }
+
+        a#shortenedURL {
+            font-size: 2.5rem;
+        }
+
+        div.card-header.output {
+            font-family: 'Comfortaa', cursive;
+            font-size: 1.5rem;
+        }
+
+
+/*        button.copy-btn {
             margin-right: 10rem;
         }
 
@@ -55,39 +65,35 @@
             color: whitesmoke;
             font-family: 'MuseoModerno', cursive;
             font-size: larger;
-        }
+        } */
     </style>
 </head>
 <body>
-    <div class="header-sec">
-        <h1 class="heading">Free URL Shortener</h1>
-        <h4 class="par">This a free tool to shorten your URLs, making them look cleaner & sightly.</h4>
-    </div>
-    <div class="curved">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#00cba9" fill-opacity="1" 
-            d="M0,192L34.3,186.7C68.6,181,137,171,206,170.7C274.3,171,343,181,411,197.3C480,213,549,235,
-            617,213.3C685.7,192,754,128,823,122.7C891.4,117,960,171,1029,192C1097.1,213,1166,203,1234,
-            208C1302.9,213,1371,235,1406,245.3L1440,256L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,
-            1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,
-            0C137.1,0,69,0,34,0L0,0Z"></path></svg>
+    <div class="container-fluid header">
+        <h1 id="heading">Free URL Shortener</h1>
+        <h4 id="sub-heading">This a free tool to shorten your URLs, making them look cleaner & sightly.</h4>
     </div>
 
 
-    <div class="container">
-        <form action="/shortURL" method="POST" class="mx-5">
-            <label for="fullURL" class="sr-only">URL</label>
-            <input required placeholder="Type URL here" type="url" 
-            name="fullURL" id="fullURL" class="form-control col">
-            <button class="shorten-btn btn btn-primary" type="submit">Shorten</button>
+    <div class="container-fluid in-out-form">
+        <form action="/shortURL" method="POST" class="form mx-5">
+            <div class="form-group">
+                <label for="fullURL" class="sr-only">URL</label>
+                <input required placeholder="Type URL here" type="url" 
+                    name="fullURL" id="fullURL" class="form-control">
+            </div>
+            <button class="btn btn-primary" type="submit">shorten</button>
+            <br>
+            <br>
         </form>
+        <div class="container">
+            <div class="card">
+                <div class="card-header output">Copy and share your shortened URL below</div>
+                <div class="card-body output"><a href="#" id="shortenedURL">https://pk.ly/fjnklFFEo</a> </div>
+            </div>
+        </div>
     </div>
-    
-    
-        <!-- The text field -->
-        <input type="text" value="Hello World" id="shortURL" class="form-control col sh-url">
-        <!-- The button used to copy the text -->
-        <button class="copy-btn" onclick="myFunction()">Copy text</button>
-    
+
     
     
     

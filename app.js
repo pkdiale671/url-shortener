@@ -10,6 +10,7 @@ mongoose.connect('mongodb://localhost/urlShortener', {
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 
+// ENDPOINTS ~ ROUTES
 app.get('/', async (req, res) => {
     const shortURLs = await ShortURL.find()
     res.render('index', { shortURLs: shortURLs })
