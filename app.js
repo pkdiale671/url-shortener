@@ -1,55 +1,66 @@
+// external libraries
 const express = require('express')
 const mongoose = require('mongoose')
-const ShortURL = require('./models/shortURL')
 require('dotenv/config')
+
+// instantiations
+const ShortURL = require('./models/shortURL')
 const app = express()
 
 /*mongoose.connect('mongodb://localhost/urlShortener', {
     useNewUrlParser: true, useUnifiedTopology: true
 })*/
 
-mongoose.connect(
-    "mongodb://pkdiale671:<AlucardHellsing73007662>@cluster0-shard-00-00-driqj.mongodb.net:27017,cluster0-shard-00-01-driqj.mongodb.net:27017,cluster0-shard-00-02-driqj.mongodb.net:27017/<URLs>?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority",    
-    { 
+mongoose.connect(process.env.DB_CONNECTION, { 
         useUnifiedTopology: true,  
         useNewUrlParser: true  
     },
-    () => console.log("DB connection successful")
+    () => console.log("DB Connected!")
 )
 
 app.set('view engine', 'ejs')
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 
 
-// ENDPOINTS ~ ROUTES
+// ENDPOINTS 
+
+// homepage
 app.get('/', (req, res) => {
-    res.render('index', {shortURL: ""})
+    res.render('index', { shortURL: {} })
 })
 
-app.post('/shortURL', (req, res) => {
-    let full_url = req.body.fullURL
-    console.log(full_url)
-    //ShortURL.create({ full: full_url })
-    let url = new ShortURL({
-        full: full_url
+// create and shorten the url
+app.post('/shortenURL', (req, res) => {
+    const newShortUrl = new ShortURL({
+        full: req.body.fullURL 
     })
-    url.save()
-    console.log('created!')
-    //const shortURL = ShortURL.find( { full: full_url } )
-    //console.log("shorturl here: ", shortURL)
-    let shortURL = ""
-    res.render('index', { shortURL: shortURL })
+
+    newShortUrl.save()
+    newShortUrl['short'] = "localhost:1234/" + newShortUrl['short']
+    /*console.log(newShortUrl['short'])
+    console.log(newShortUrl)*/
+    res.render('index', { shortURL: newShortUrl })
 })
 
+// redirect to actual link via shortened URL
 app.get('/:shortURL', async (req,res) => {
-    const shortURL = await ShortURL.findOne({ short: req.params.shortURL })
+    ShortURL.find({ "short": req.params.shortURL }, function(err, url) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.redirect(url.full)
+        }
+    })
+
+    /*const shortURL = await ShortURL.findOne({ short: req.params.shortURL })
     if (shortURL == null)
         return 
+    res.redirect(shortURL.full)*/
 
-    res.redirect(shortURL.full)
+
 })
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 1234
 app.listen(PORT, () => {
-    console.log("Server is runnning...")
+    console.log("Server is listening on port", PORT)
 })

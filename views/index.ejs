@@ -76,7 +76,7 @@
 
 
     <div class="container-fluid in-out-form">
-        <form action="/shortURL" method="POST" class="form mx-5">
+        <form action="/shortenURL" method="POST" class="form mx-5">
             <div class="form-group">
                 <label for="fullURL" class="sr-only">URL</label>
                 <input required placeholder="Type URL here" type="url" 
@@ -89,7 +89,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-header output">Copy and share your shortened URL below</div>
-                <div class="card-body output"><a href="<%= shortURL.full %>" id="shortenedURL"><%= shortURL.full %></a></div>
+                <div class="card-body output"><a href="<%= shortURL.full %>" id="shortenedURL"><%= shortURL.short %></a></div>
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@
     <!-- Footer -->
     <footer class="page-footer font-small blue mt-5">
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2020 Copyright, By Pako Diale. All rights reserved.</div>
+        <div class="footer-copyright text-center py-3">© 2020 Copyright. All rights reserved.</div>
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
