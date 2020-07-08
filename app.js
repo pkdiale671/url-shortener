@@ -36,7 +36,7 @@ app.post('/shortenURL', (req, res) => {
     })
 
     newShortUrl.save()
-    newShortUrl['short'] = "localhost:1234/" + newShortUrl['short']
+    newShortUrl['short'] = "nibbl.ga/" + newShortUrl['short']
     /*console.log(newShortUrl['short'])
     console.log(newShortUrl)*/
     res.render('index', { shortURL: newShortUrl })
